@@ -13,6 +13,7 @@ void main() async{
     debugShowCheckedModeBanner: false,
     initialRoute: 'select_language',
     routes: {
+      // routes
       'select_language' : (context) => select_language() ,
       'phone_number' : (context) =>phone_number() ,
       'otp_verify' : (context) => otp_verify(),

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 class phone_number extends StatefulWidget {
   static var phone ;
+  static var name = "" ;
+  static var email = "" ;
   static String verificationID = "" ;
   const phone_number({super.key});
 
@@ -46,6 +48,39 @@ class _phone_numberState extends State<phone_number> {
               Text('You\'ll receive a 6 digit code\nto verify next',style: TextStyle(fontSize: 17),textAlign: TextAlign.center,),
               SizedBox(
                 height: 25,
+              ),
+        Container(
+          padding: EdgeInsets.only(left: 20,right: 20),
+          decoration: BoxDecoration(
+              border: Border.all(width: 1.5,color: Colors.black)
+          ),
+          child: TextField(
+            keyboardType: TextInputType.name,
+            onChanged: (value){
+              phone_number.name = value ;
+            },
+            decoration: InputDecoration(border: InputBorder.none,hintText: 'Enter Your Name'),
+          ),
+        ) ,
+
+              SizedBox(
+                height: 15,
+              ),
+        Container(
+          padding: EdgeInsets.only(left: 20,right: 20),
+          decoration: BoxDecoration(
+              border: Border.all(width: 1.5,color: Colors.black)
+          ),
+          child:TextField(
+                keyboardType: TextInputType.emailAddress,
+                onChanged: (value){
+                  phone_number.email = value ;
+                },
+                decoration: InputDecoration(border: InputBorder.none,hintText: 'Enter Email'),
+              ),
+        ),
+              SizedBox(
+                height: 15,
               ),
               Container(
                 decoration: BoxDecoration(

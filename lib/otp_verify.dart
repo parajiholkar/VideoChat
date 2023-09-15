@@ -84,7 +84,7 @@ class _otp_verifyState extends State<otp_verify> {
                 try{
                   PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: phone_number.verificationID, smsCode: verificationCode);
                   await auth.signInWithCredential(credential);
-                  Navigator.pushNamed(context, 'select_profile');
+                  Navigator.pushNamed(context, 'profile');
                 }catch(e){
 
                 }

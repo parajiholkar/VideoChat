@@ -2,7 +2,7 @@
 import 'package:assignment/otp_verify.dart';
 import 'package:assignment/phone_number.dart';
 import 'package:assignment/select_language.dart';
-import 'package:assignment/select_profile.dart';
+import 'package:assignment/profile.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +17,7 @@ void main() async{
       'select_language' : (context) => select_language() ,
       'phone_number' : (context) =>phone_number() ,
       'otp_verify' : (context) => otp_verify(),
-      'select_profile' : (context) => select_profile()
+      'profile' : (context) => profile()
     },
   ));
 }

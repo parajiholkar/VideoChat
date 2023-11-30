@@ -1,26 +1,37 @@
 
-import 'package:assignment/otp_verify.dart';
-import 'package:assignment/phone_number.dart';
-import 'package:assignment/select_language.dart';
-import 'package:assignment/profile.dart';
+import 'package:assignment/services/auth/auth_gate.dart';
+import 'package:assignment/services/auth/auth_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    initialRoute: 'select_language',
-    routes: {
-      // routes
-      'select_language' : (context) => select_language() ,
-      'phone_number' : (context) =>phone_number() ,
-      'otp_verify' : (context) => otp_verify(),
-      'profile' : (context) => profile()
-    },
-  ));
+  runApp(
+    ChangeNotifierProvider(create: (context) => AuthService(),
+      child: const MyApp(),
+    )
+  );
 }
+
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: AuthGate(),
+    );
+  }
+}
+
 
 
 

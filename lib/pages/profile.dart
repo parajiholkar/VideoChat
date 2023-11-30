@@ -1,4 +1,4 @@
-import 'package:assignment/phone_number.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -26,9 +26,6 @@ class _profileState extends State<profile> {
         //comment
         child: Column(
           children: [
-            Text(phone_number.name,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
-            Text(phone_number.phone,style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
-            Text(phone_number.email,style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),textAlign: TextAlign.center,)
             
           ],
         ),

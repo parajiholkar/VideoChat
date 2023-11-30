@@ -1,4 +1,4 @@
-# assignment
+# VideoChat - Calling And Chating App
 
 A new Flutter project.
 

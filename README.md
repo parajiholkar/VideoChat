@@ -1,16 +1,39 @@
-# VideoChat - Calling And Chating App
+# 📹 VideoChat
 
-A new Flutter project.
+## 🌟 Description
+VideoChat is a real-time video communication application built with Flutter. It leverages WebRTC to provide seamless video chat capabilities, allowing users to connect and communicate visually, instant text messaging.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## ✨ Features
+- 🎥 High-quality video calls
+- 📞 Real-time audio communication
+- 🔒 Secure connections
+- 👥 Multi-user video conferencing
+- 💬 Real-time text messaging
 
-A few resources to get you started if this is your first Flutter project:
+## 🛠️ Tools and Technologies
+- Flutter
+- Dart
+- WebRTC
+- Firebase (for authentication and real-time database)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🛠️ Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/parajiholkar/VideoChat.git
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+2. Navigate to the project directory:
+   ```bash
+   cd VideoChat
+
+3. Install dependencies:
+    ```bash
+   flutter pub get
+
+4. Configure Firebase:
+   - Follow the Firebase setup guide for Flutter.
+   - Add your 'google-services.json' and 'GoogleService-Info.plist' files to the appropriate directories.
+
+4. Run the application:
+    ```bash
+   flutter run

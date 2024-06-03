@@ -70,87 +70,115 @@ class _CallingScreenState extends State<CallingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(2, 23, 42, 1.0),
+        appBar: AppBar(
+          backgroundColor: Color.fromRGBO(5, 34, 65, 1.0),
+          elevation: 0,
+          automaticallyImplyLeading: false,
+          title: SelectableText(
+            '${widget.signallingService.roomID}',
+          ),
+          actions: [
+            IconButton(
+              onPressed: _showUserlist,
+              icon: Icon(Icons.send_rounded),
+            )
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            widget.signallingService.hangUp(widget.localVideoRenderer);
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text("Call END")));
+            Navigator.pop(context);
+            // Navigator.pushReplacement(context,
+            //     MaterialPageRoute(builder: (context) => HomePage()));
+          },
+          child: Icon(Icons.call_end_rounded),
+          backgroundColor: Colors.red,
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         body: WillPopScope(
-      onWillPop: _onBackPressed,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(height: 40.0),
-            Container(
-              height: 50,
-              child: Card(
-                elevation: 3,
-                color: Theme.of(context).primaryColor,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10))),
-                child: Padding(
-                  padding: const EdgeInsets.all(3.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+          onWillPop: _onBackPressed,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16.0,right: 16.0,top: 5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // SizedBox(height: 40.0),
+                // Container(
+                //   height: 50,
+                //   child: Card(
+                //     elevation: 3,
+                //     color: Theme.of(context).primaryColor,
+                //     shape: RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.only(
+                //             topLeft: Radius.circular(10),
+                //             topRight: Radius.circular(10),
+                //             bottomLeft: Radius.circular(10),
+                //             bottomRight: Radius.circular(10))),
+                //     child: Padding(
+                //       padding: const EdgeInsets.all(3.0),
+                //       child: Row(
+                //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //         crossAxisAlignment: CrossAxisAlignment.center,
+                //         children: [
+                //           Row(
+                //             mainAxisAlignment: MainAxisAlignment.center,
+                //             crossAxisAlignment: CrossAxisAlignment.center,
+                //             children: [
+                //               Text(
+                //                 "Call ID : ",
+                //                 style: TextStyle(
+                //                     fontWeight: FontWeight.w700,
+                //                     color: Colors.white),
+                //               ),
+                //               SelectableText(
+                //                 '${widget.signallingService.roomID}',
+                //                 style: TextStyle(
+                //                     fontWeight: FontWeight.w700,
+                //                     color: Colors.white),
+                //               ),
+                //             ],
+                //           ),
+                //           IconButton(
+                //             onPressed: _showUserlist,
+                //             icon: Icon(Icons.send_rounded, color: Colors.white),
+                //           )
+                //         ],
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                // SizedBox(height: 8.0),
+                _buildCallStatusSteam(),
+                // _buildConnectionSteam(),
+                SizedBox(height: 5.0),
+                Expanded(
+                  child: Stack(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Call ID : ",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white),
-                          ),
-                          SelectableText(
-                            '${widget.signallingService.roomID}',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white),
-                          ),
-                        ],
-                      ),
-                      IconButton(
-                        onPressed: _showUserlist,
-                        icon: Icon(Icons.send_rounded, color: Colors.white),
-                      )
+                      _buildRemoteRTCVideo(),
+                      _buildLocalRTCVideo(),
                     ],
                   ),
                 ),
-              ),
+                // SizedBox(height: 16.0),
+                // ElevatedButton(
+                //   onPressed: () {
+                //     widget.signallingService.hangUp(widget.localVideoRenderer);
+                //     ScaffoldMessenger.of(context)
+                //         .showSnackBar(SnackBar(content: Text("Call END")));
+                //     Navigator.pop(context);
+                //     // Navigator.pushReplacement(context,
+                //     //     MaterialPageRoute(builder: (context) => HomePage()));
+                //   },
+                //   child: Text('Hang Up'),
+                // ),
+              ],
             ),
-            SizedBox(height: 8.0),
-            _buildCallStatusSteam(),
-            // _buildConnectionSteam(),
-            SizedBox(height: 5.0),
-            Expanded(
-              child: Stack(
-                children: [
-                  _buildRemoteRTCVideo(),
-                  _buildLocalRTCVideo(),
-                ],
-              ),
-            ),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: () {
-                widget.signallingService.hangUp(widget.localVideoRenderer);
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(SnackBar(content: Text("Call END")));
-                Navigator.pop(context);
-                // Navigator.pushReplacement(context,
-                //     MaterialPageRoute(builder: (context) => HomePage()));
-              },
-              child: Text('Hang Up'),
-            ),
-          ],
-        ),
-      ),
-    ));
+          ),
+        ));
   }
 
   Widget _buildRemoteRTCVideo() {
@@ -221,16 +249,17 @@ class _CallingScreenState extends State<CallingScreen> {
             return Center(
               child: Text(
                 "Waiting...",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold,color: Colors.white),
               ),
             );
           }
           if (snapshot.hasData && snapshot.data != null) {
             if (snapshot.data == CallStatus.disconnected) {
+              Navigator.pop(context);
               return Center(
                 child: Text(
                   "Disconnected",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold,color: Colors.white),
                 ),
               );
             }
@@ -238,7 +267,7 @@ class _CallingScreenState extends State<CallingScreen> {
               return Center(
                 child: Text(
                   "Connecting",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold,color: Colors.white),
                 ),
               );
             }
@@ -246,7 +275,7 @@ class _CallingScreenState extends State<CallingScreen> {
               return Center(
                 child: Text(
                   "connected",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold,color: Colors.white),
                 ),
               );
             }
@@ -305,7 +334,8 @@ class _CallingScreenState extends State<CallingScreen> {
                 child: ListView.builder(
                   shrinkWrap: true,
                   itemCount: userlist.length,
-                  itemBuilder: (context, i) => _buildUserListItem(userlist[i],context),
+                  itemBuilder: (context, i) =>
+                      _buildUserListItem(userlist[i], context),
                 ),
               ),
               actions: <Widget>[
@@ -332,7 +362,10 @@ class _CallingScreenState extends State<CallingScreen> {
       subtitle: Text(data['phoneNumber']),
       onTap: () async {
         await _chatservice.sendMessage(
-            data['uid'],'To Join The Call Click On the Join Call', '${widget.signallingService.roomID}',true);
+            data['uid'],
+            'To Join The Call Click On the Join Call',
+            '${widget.signallingService.roomID}',
+            true);
         Navigator.pop(context, 'cancel');
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(

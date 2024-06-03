@@ -137,17 +137,6 @@ class _NamePageState extends State<NamePage> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 100,
-              ),
-              WaveWidget(
-                config: CustomConfig(
-                    colors: [Color.alphaBlend(
-                        Colors.blue.shade900, Colors.blue.shade500),Theme.of(context).primaryColorDark,],
-                    durations: [3500, 1944],
-                    heightPercentages: [0.20, 0.35]),
-                size: Size(double.infinity, 450),
-              )
             ],
           ),
       ),

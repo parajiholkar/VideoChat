@@ -2,8 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:wave/config.dart';
-import 'package:wave/wave.dart';
 
 import 'otp_verify.dart';
 
@@ -94,6 +92,11 @@ class _phone_numberState extends State<phone_number> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+      ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,16 +108,7 @@ class _phone_numberState extends State<phone_number> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: 120),
-                    height: 70,
-                    width: 70,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: Image.asset('assets/image.png'),
-                  ),
-                  SizedBox(
-                    height: 15,
+                    child: Image.asset('assets/Mobile_login.png'),
                   ),
                   Text(
                     "Please enter your mobile number",
@@ -209,22 +203,6 @@ class _phone_numberState extends State<phone_number> {
                   ),
                 ],
               ),
-            ),
-            SizedBox(
-              height: 100,
-            ),
-            WaveWidget(
-              config: CustomConfig(colors: [
-                Theme.of(context).primaryColor,
-                Theme.of(context).primaryColorDark
-              ], durations: [
-                3500,
-                1944
-              ], heightPercentages: [
-                0.20,
-                0.35
-              ]),
-              size: Size(double.infinity, 450),
             ),
           ],
         ),

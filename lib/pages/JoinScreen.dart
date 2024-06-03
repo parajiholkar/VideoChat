@@ -220,7 +220,7 @@ class _JoiningScreenState extends State<JoiningScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 25.0),
+                  SizedBox(height: 12.0),
                   Container(
                     height: 40,
                     padding: EdgeInsets.only(left: 15),
@@ -274,27 +274,33 @@ class _JoiningScreenState extends State<JoiningScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 80.0),
+              SizedBox(height: 40.0),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  CircleAvatar(
-                    radius: 80,
-                    backgroundColor: Colors.transparent,
-                    child: Container(
-                        height: 200,
-                        width: 300,
-                        child: ClipOval(
-                          child: Image.asset(
-                            'assets/phoneNumberScreen.jpg',
-                            fit: BoxFit.fill,
-                          ),
-                        )),
+                  Container(
+                    margin: EdgeInsets.only(left: 15,right: 15),
+                    child: Image.asset(
+                      'assets/Video call-bro.png',
+                    ),
                   ),
+                  // CircleAvatar(
+                  //   radius: 80,
+                  //   backgroundColor: Colors.transparent,
+                  //   child: Container(
+                  //       height: 200,
+                  //       width: 300,
+                  //       child: ClipOval(
+                  //         child: Image.asset(
+                  //           'assets/phoneNumberScreen.jpg',
+                  //           fit: BoxFit.fill,
+                  //         ),
+                  //       )),
+                  // ),
                   SizedBox(height: 20.0),
                   Text(
-                    "let's make a Video Call",
+                    "Let's Make a Video Call",
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                   Text(

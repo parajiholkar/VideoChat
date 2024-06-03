@@ -1,4 +1,4 @@
-name: assignment
+name: VideoChat
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -45,6 +45,9 @@ dependencies:
   grouped_list: ^5.1.2
   internet_connection_checker:
   wave: ^0.2.2
+  google_fonts: ^5.1.0
+  flutter_native_splash: ^2.3.7
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
@@ -56,6 +59,24 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/ic_launcher.png"
+  adaptive_icon_background: "#EEF3F3"
+  adaptive_icon_foreground: "assets/ic_launcher.png"
+
+flutter_native_splash:
+  android: true
+  ios: true
+  color: "#EEF3F3"
+  image: assets/Splash.png
+
+  android_12:
+    color: "#EEF3F3"
+    image: assets/Splash.png
+    icon_background_color: "#EEF3F3"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

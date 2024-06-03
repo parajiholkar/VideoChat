@@ -1,12 +1,10 @@
-import 'package:assignment/pages/HomePage.dart';
+import 'package:VideoChat/pages/HomePage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
-import 'package:assignment/pages/phone_number.dart';
-import 'package:wave/config.dart';
-import 'package:wave/wave.dart';
+import 'package:VideoChat/pages/phone_number.dart';
 import 'NamePage.dart';
 
 class otp_verify extends StatefulWidget {
@@ -101,6 +99,11 @@ class _otp_verifyState extends State<otp_verify> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
+              margin: EdgeInsets.only(left: 30,right: 30),
+              width: MediaQuery.of(context).size.width/1.5,
+              child: Image.asset('assets/Mobile_login.png'),
+            ),
+            Container(
               margin: EdgeInsets.only(left: 25, right: 25, top: 75),
               child: Column(
                 children: [
@@ -180,17 +183,6 @@ class _otp_verifyState extends State<otp_verify> {
                   ),
                 ],
               ),
-            ),
-            SizedBox(
-              height: 100,
-            ),
-            WaveWidget(
-              config: CustomConfig(
-                  colors: [Theme.of(context).primaryColor,Color.alphaBlend(
-                      Colors.blue.shade900, Colors.blue.shade500),],
-                  durations: [3500, 1944],
-                  heightPercentages: [0.20, 0.35]),
-              size: Size(double.infinity, 450),
             ),
           ],
         ),

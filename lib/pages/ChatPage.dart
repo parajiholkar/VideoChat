@@ -52,11 +52,9 @@ class _ChatPageState extends State<ChatPage> {
     if (FirebaseAuth.instance.currentUser!.phoneNumber != data['phoneNumber']) {
       return ListTile(
         leading: CircleAvatar(
-          backgroundColor: Colors.black12,
-          child: Icon(
-            Icons.person,
-            size: 30,
-            color: Colors.black,
+          child: Image.asset(
+            data['photoURL'] ?? "assets/user.png",
+            fit: BoxFit.fill,
           ),
         ),
         title: Text(data['name']),

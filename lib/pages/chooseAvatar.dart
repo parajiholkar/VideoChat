@@ -23,7 +23,7 @@ class _ChooseAvatarPageState extends State<ChooseAvatarPage> {
             child: Text(
               'CHOOSE AVATAR',
               textAlign: TextAlign.center,
-              style: GoogleFonts.sniglet(fontSize: 18),
+              style: GoogleFonts.sniglet(fontSize: 18,color: Colors.black),
             ),
           ),
           leading: GestureDetector(

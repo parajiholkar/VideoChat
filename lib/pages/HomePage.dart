@@ -1,11 +1,7 @@
-import 'package:VideoChat/pages/phone_number.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_webrtc/flutter_webrtc.dart';
-import 'package:provider/provider.dart';
-
-import '../services/callingService/SignallingService.dart';
 import 'ChatPage.dart';
 import 'JoinScreen.dart';
 import 'profilePage.dart';
@@ -18,12 +14,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  void signout() async {
-    await FirebaseAuth.instance.signOut();
-    Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => phone_number()),
-        (route) => false);
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Future<String> getData() async {
+    DocumentSnapshot snapshot = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
+
+    Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
+
+    return data['photoURL'] ?? "assets/user.png";
   }
 
   @override
@@ -37,10 +41,16 @@ class _HomePageState extends State<HomePage> {
             bottom: const TabBar(
               tabs: [
                 Tab(
-                  child: Text('Chats',style: TextStyle(fontWeight: FontWeight.bold),),
+                  child: Text(
+                    'Chats',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
                 Tab(
-                  child: Text('Calls',style: TextStyle(fontWeight: FontWeight.bold),),
+                  child: Text(
+                    'Calls',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 )
               ],
             ),
@@ -51,14 +61,44 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => ProfilePage()));
                 },
-                child: CircleAvatar(
-                  backgroundColor: Colors.black12,
-                  child: Icon(
-                    Icons.person,
-                    size: 30,
-                    color: Colors.white,
-                  ),
-                ),
+                child: FutureBuilder(
+                    future: getData(),
+                    builder: (context, snapshot) {
+
+                      if(snapshot.hasError){
+                        return CircleAvatar(
+                          child: Image.asset(
+                            "assets/user.png",
+                            fit: BoxFit.fill,
+                          ),
+                        );
+                      }
+
+                      if(snapshot.connectionState == ConnectionState.waiting){
+                        return CircleAvatar(
+                          child: Image.asset(
+                            "assets/user.png",
+                            fit: BoxFit.fill,
+                          ),
+                        );
+                      }
+
+                      if(snapshot.hasData){
+                        return CircleAvatar(
+                          child: Image.asset(
+                            snapshot.data ?? "assets/user.png",
+                            fit: BoxFit.fill,
+                          ),
+                        );
+                      }
+
+                      return CircleAvatar(
+                        child: Image.asset(
+                          snapshot.data ?? "assets/user.png",
+                          fit: BoxFit.fill,
+                        ),
+                      );
+                    }),
               ),
               SizedBox(
                 width: 10,
